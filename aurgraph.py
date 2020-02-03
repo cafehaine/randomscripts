@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 A small cli tool to generate dependency graphs for the aur.
 
@@ -34,11 +35,12 @@ queries = [
     Query(None, None, {'by': 'maintainer', 'arg': args.maintainer})
 ]
 
+print("==> Fetching informations")
 while queries:
     query = queries.pop()
+    print("by {}: {}".format(query.args['by'], query.args['arg']))
     r = get(AUR_RPC_URL, params=query.args)
     json = r.json()
-    print(json)
     for package in json['results']:
         name = package['Name']
         if package['Maintainer'] == args.maintainer:
@@ -51,4 +53,9 @@ while queries:
         queries.append(Query(name, 'makedepends', {'by': 'makedepends', 'arg': name}))
         queries.append(Query(name, 'checkdepends', {'by': 'checkdepends', 'arg': name}))
 
+print("==> Done fetching informations")
+print("==> Saving graph as graph.dot")
 write_dot(G, 'graph.dot')
+print("==> Done saving.")
+print("To generate a visual representation of this graph, run the following command:")
+print("> dot graph.dot -Tpng -o graph.png")
