@@ -6,6 +6,10 @@ function love.load()
 	mode = "detect"
 end
 
+function love.mousepressed()
+	love.mouse.setVisible(not love.mouse.isVisible())
+end
+
 function love.keypressed(key)
 	if key == "f11" then
 		fullscreen = not fullscreen
