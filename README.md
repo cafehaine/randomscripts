@@ -9,3 +9,5 @@ Random scripts that I use that don't deserve a full repo
  * aurgraph.py: Create a graph of the aur packages that depend on packages made by a specific maintainer. Great to see how many computers you could infect if you decide to go rogue with a package you own 🤷
  * min\_cpu\_freq.sh: When you really need to use those last few battery
  percents.
+ * pixel flasher: A love2D app to flash colors on a screen in order to unstuck
+ pixels.
